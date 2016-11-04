@@ -85,8 +85,8 @@ public class entry_pane extends JPanel {
         try {
 
             entry_reader xml_reader = new entry_reader();
-            String[] lines = xml_reader.string_array;
-            list = new JList(lines);
+            // String[] lines = xml_reader.string_array;
+            list = new JList(xml_reader.string_array);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -98,7 +98,7 @@ public class entry_pane extends JPanel {
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-                    new entry_generator(id.getText(), title.getText(), value.getText(), text.getText());
+                    entry_generator eg =new entry_generator(id.getText(), title.getText(), value.getText(), text.getText());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
