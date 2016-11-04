@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * Created by martinrosellen on 04/11/2016.
@@ -67,7 +68,11 @@ public class entry_pane extends JPanel {
 
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new entry_generator(id.getText(), title.getText(), value.getText(), text.getText());
+                try {
+                    new entry_generator(id.getText(), title.getText(), value.getText(), text.getText());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         init_list.addActionListener(new java.awt.event.ActionListener() {
