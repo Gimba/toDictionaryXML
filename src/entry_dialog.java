@@ -12,30 +12,9 @@ public class entry_dialog extends JFrame {
         entry_pane listPane = new entry_pane();
         add(listPane, BorderLayout.CENTER);
 
-        JPanel entry_list = new JPanel();
-        entry_list.setLayout(new GridBagLayout());
-        GridBagConstraints c2 = new GridBagConstraints();
+        IndexList indexList = new IndexList();
 
-        JScrollPane scrollPane = new JScrollPane(entry_list);
-        scrollPane.setSize(100,200);
-
-        JList list = new JList();
-
-        try {
-
-            entry_reader xml_reader = new entry_reader();
-            // String[] lines = xml_reader.string_array;
-            list = new JList(xml_reader.string_array);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        c2.gridx = 0;
-        c2.gridy = 0;
-        entry_list.add(list,c2);
-
-        add(scrollPane,BorderLayout.EAST);
+        add(indexList.scrollPane,BorderLayout.EAST);
         // pack();
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
