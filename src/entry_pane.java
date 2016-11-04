@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,71 +9,53 @@ import java.io.IOException;
  */
 public class entry_pane extends JPanel {
     public entry_pane() {
-        this.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        setLayout(new BorderLayout());
+        // xml fields that can be an input
+        JPanel inputFields = new JPanel(new FlowLayout());
 
-
-        JTextArea text = new JTextArea("initial velocity", 10, 3);
         JTextField id = new JTextField("id", 10);
         JTextField title = new JTextField("title", 10);
         JTextField value = new JTextField("value", 10);
 
+        inputFields.add(id, FlowLayout.LEFT);
+        inputFields.add(title, FlowLayout.LEFT);
+        inputFields.add(value, FlowLayout.LEFT);
 
-        myButton add = new myButton("add");
-        myButton finish = new myButton("finish");
+        add(inputFields, BorderLayout.NORTH);
+
+        // text field
+        JPanel textPanel = new JPanel(new BorderLayout());
+        JTextArea text = new JTextArea("initial velocity", 10, 3);
+        textPanel.setSize(200,200);
+        textPanel.add(text);
+        add(textPanel,BorderLayout.CENTER);
+
+        // control over xml list tags
+        JPanel tagControls = new JPanel();
+        tagControls.setLayout(new BoxLayout(tagControls, BoxLayout.PAGE_AXIS));
+
         myButton init_list = new myButton("<ul>");
         myButton end_list = new myButton("</ul>");
         myButton init_item = new myButton("<li>");
         myButton end_item = new myButton("</li>");
-        JPanel controls = new JPanel();
-        controls.setLayout(new GridBagLayout());
-        GridBagConstraints c1 = new GridBagConstraints();
 
+        tagControls.add(init_list);
+        tagControls.add(end_list);
+        tagControls.add(init_item);
+        tagControls.add(end_item);
 
+        add(tagControls, BorderLayout.EAST);
 
+        // save entry and finish button
+        JPanel fileControl = new JPanel();
 
+        myButton add = new myButton("Add");
+        myButton finish = new myButton("Finish");
 
-        c.insets = new Insets(5, 5, 5, 5);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = 0;
-        add(id, c);
-        c.gridx = 2;
-        c.gridy = 1;
-        add(title);
-        c.gridx = 3;
-        c.gridy = 1;
-        add(value);
-        c.gridx = 0;
-        c.gridy = 2;
-        c.gridwidth = 3;
-        add(text, c);
-        c.gridx = 0;
-        c.gridy = 3;
-        c.gridwidth = 1;
-        add(add, c);
-        c.gridx = 1;
-        c.gridy = 3;
-        add(finish, c);
-        c.gridx = 4;
-        c.gridy = 2;
-        add(controls,c);
+        fileControl.add(add);
+        fileControl.add(finish);
 
-        c1.gridx = 0;
-        c1.gridy = 0;
-        controls.add(init_list,c1);
-        c1.gridx = 0;
-        c1.gridy = 1;
-        controls.add(end_list,c1);
-        c1.gridx = 0;
-        c1.gridy = 2;
-        controls.add(init_item,c1);
-        c1.gridx = 0;
-        c1.gridy = 3;
-        controls.add(end_item,c1);
-
-
-
+        add(fileControl, BorderLayout.SOUTH);
 
 
         add.addActionListener(new java.awt.event.ActionListener() {

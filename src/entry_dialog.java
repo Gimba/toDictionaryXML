@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
  */
 public class entry_dialog extends JFrame {
     public entry_dialog() {
-        setSize(800,500);
+        setSize(1200,500);
 
         entry_pane listPane = new entry_pane();
         add(listPane, BorderLayout.CENTER);
@@ -17,7 +17,7 @@ public class entry_dialog extends JFrame {
         GridBagConstraints c2 = new GridBagConstraints();
 
         JScrollPane scrollPane = new JScrollPane(entry_list);
-        scrollPane.setSize(200,200);
+        scrollPane.setSize(100,200);
 
         JList list = new JList();
 
