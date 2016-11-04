@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1871359b-9e34-441e-8072-838e5ca54aaa" name="Default" comment="">
+<<<<<<< Updated upstream
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IndexList.java" afterPath="$PROJECT_DIR$/src/IndexList.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entry_dialog.java" afterPath="$PROJECT_DIR$/src/entry_dialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entry_pane.java" afterPath="$PROJECT_DIR$/src/entry_pane.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entry_reader.java" afterPath="$PROJECT_DIR$/src/entry_reader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.java" afterPath="$PROJECT_DIR$/src/main.java" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EntryReader.java" afterPath="$PROJECT_DIR$/src/EntryReader.java" />
+>>>>>>> Stashed changes
     </list>
     <ignored path="toDictionaryXML.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,8 +67,23 @@
       <file leaf-file-name="IndexList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IndexList.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="75">
               <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+=======
+            <state relative-caret-position="255">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntryList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/EntryList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="51" column="65" selection-start-line="51" selection-start-column="65" selection-end-line="51" selection-end-column="65" />
+>>>>>>> Stashed changes
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,11 +91,19 @@
           </provider>
         </entry>
       </file>
+<<<<<<< Updated upstream
       <file leaf-file-name="entry_reader.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/entry_reader.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
               <caret line="54" column="42" selection-start-line="54" selection-start-column="42" selection-end-line="54" selection-end-column="42" />
+=======
+      <file leaf-file-name="EntryReader.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/EntryReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="76" column="22" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
@@ -107,6 +134,12 @@
         <option value="$PROJECT_DIR$/src/entry_dialog.java" />
         <option value="$PROJECT_DIR$/src/main.java" />
         <option value="$PROJECT_DIR$/src/entry_reader.java" />
+<<<<<<< Updated upstream
+=======
+        <option value="$PROJECT_DIR$/src/EntryDialog.java" />
+        <option value="$PROJECT_DIR$/src/EntryGenerator.java" />
+        <option value="$PROJECT_DIR$/src/EntryReader.java" />
+>>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -573,6 +606,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/src/entry_dialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -582,6 +616,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.java">
+=======
+    <entry file="file://$PROJECT_DIR$/src/EntryDialog.java">
+>>>>>>> Stashed changes
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
@@ -600,5 +637,26 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
+=======
+    <entry file="file://$PROJECT_DIR$/src/EntryList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="51" column="65" selection-start-line="51" selection-start-column="65" selection-end-line="51" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EntryReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="76" column="22" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> Stashed changes
   </component>
 </project>

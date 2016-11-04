@@ -2,6 +2,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.ls.DOMImplementationLS;
+import org.w3c.dom.ls.LSSerializer;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -53,7 +55,7 @@ public class entry_reader  {
 
             for (int i = 0; i < eList.getLength(); i++){
                 Node nNode = eList.item(i);
-                textList[i] = nNode.getTextContent();
+                textList[i] = innerXml(nNode);
                 Element eElement = (Element) nNode;
                 entriesList[i]= eElement.getAttribute("id") + "   :   " + eElement.getAttribute("d:title");
 //                System.out.println(eElement.getAttribute("id"));
@@ -65,6 +67,18 @@ public class entry_reader  {
             e.printStackTrace();
         }
 
+    }
+    public String innerXml(Node node) {
+        DOMImplementationLS lsImpl = (DOMImplementationLS)node.getOwnerDocument().getImplementation().getFeature("LS", "3.0");
+        LSSerializer lsSerializer = lsImpl.createLSSerializer();
+        lsSerializer.getDomConfig().setParameter("xml-declaration", false);
+        NodeList childNodes = node.getChildNodes();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 2; i < childNodes.getLength(); i++) {
+            sb.append(lsSerializer.writeToString(childNodes.item(i)));
+        }
+
+        return sb.toString();
     }
 
 }
