@@ -5,17 +5,16 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by martinrosellen on 04/11/2016.
  */
 public class entry_reader  {
-    String [] string_array;
-
+    String [] entriesList;
+    NodeList eList;
+    NodeList iList;
+    String [] textList;
     public entry_reader() throws FileNotFoundException {
 //        FileReader fr = new FileReader("output/entries.xml");
 //
@@ -28,8 +27,8 @@ public class entry_reader  {
 //            while ((line = bf.readLine()) != null){
 //                line_list.add(line);
 //            }
-//            // string_array = new String[line_list.size()];
-//            string_array = line_list.toArray(new String[0]);
+//            // entriesList = new String[line_list.size()];
+//            entriesList = line_list.toArray(new String[0]);
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
@@ -41,16 +40,25 @@ public class entry_reader  {
             dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(file);
             doc.getDocumentElement().normalize();
-            NodeList nList = doc.getElementsByTagName("d:entry");
-            System.out.print(nList.getLength());
-            string_array = new String[nList.getLength()];
 
-            for (int i = 0; i < nList.getLength(); i++){
-                Node nNode = nList.item(i);
+            //Node n = doc.getFirstChild();
+            //NodeList nl = n.getChildNodes();
+            //System.out.println(doc.getDocumentElement());
+
+            iList = doc.getElementsByTagName("d:index");
+            eList = doc.getElementsByTagName("d:entry");
+            // System.out.print(eList.getLength());
+            entriesList = new String[eList.getLength()];
+            textList = new String[eList.getLength()];
+
+            for (int i = 0; i < eList.getLength(); i++){
+                Node nNode = eList.item(i);
+                textList[i] = nNode.getTextContent();
                 Element eElement = (Element) nNode;
-                string_array[i]= eElement.getAttribute("id") + "   :   " + eElement.getAttribute("d:title");
+                entriesList[i]= eElement.getAttribute("id") + "   :   " + eElement.getAttribute("d:title");
 //                System.out.println(eElement.getAttribute("id"));
 //                System.out.println(eElement.getAttribute("d:title"));
+
             }
 
         } catch (Exception e) {

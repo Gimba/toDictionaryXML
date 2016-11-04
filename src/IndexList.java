@@ -1,10 +1,10 @@
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
-
-import static java.awt.SystemColor.text;
 
 /**
  * Created by martinrosellen on 04/11/2016.
@@ -13,8 +13,15 @@ public class IndexList {
     JPanel entry_list = new JPanel();
     JScrollPane scrollPane;
     entry_reader xml_reader;
-    public IndexList(){
-
+    JTextField id;
+    JTextField value;
+    JTextField title;
+    JTextArea text;
+    public IndexList(JTextField id, JTextField value, JTextField title, JTextArea text){
+        this.id = id;
+        this.value = value;
+        this.title = title;
+        this.text = text;
 
         // entry_list.setLayout(new GridBagLayout());
         // GridBagConstraints c2 = new GridBagConstraints();
@@ -27,8 +34,8 @@ public class IndexList {
         try {
 
             this.xml_reader = new entry_reader();
-            // String[] lines = xml_reader.string_array;
-            list = new JList(xml_reader.string_array);
+            // String[] lines = xml_reader.entriesList;
+            list = new JList(xml_reader.entriesList);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -42,8 +49,18 @@ public class IndexList {
                 JList list_temp = (JList)e.getComponent();
                 int index = list_temp.locationToIndex(e.getPoint());
                 System.out.print(index);
-                System.out.println(xml_reader.string_array[index]);
+                System.out.println(xml_reader.eList.item(index));
+                Node eNode = xml_reader.eList.item(index);
+                Element eElement = (Element) eNode;
+                text.setText(xml_reader.textList[index]);
 
+
+                id.setText(eElement.getAttribute("id"));
+                title.setText(eElement.getAttribute("d:title"));
+
+                Node iNode = xml_reader.iList.item(index);
+                Element iElement = (Element) iNode;
+                value.setText(iElement.getAttribute("d:value"));
             }
 
             @Override
