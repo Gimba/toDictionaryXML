@@ -25,10 +25,6 @@ public class IndexList {
 
         // entry_list.setLayout(new GridBagLayout());
         // GridBagConstraints c2 = new GridBagConstraints();
-
-        JScrollPane scrollPane = new JScrollPane(entry_list);
-        scrollPane.setSize(100,200);
-
         JList list = new JList();
 
         try {
@@ -41,7 +37,10 @@ public class IndexList {
             e.printStackTrace();
         }
         entry_list.add(list);
-        this.scrollPane = new JScrollPane(entry_list);
+
+        scrollPane = new JScrollPane(entry_list,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setSize(100,200);
 
         list.addMouseListener(new MouseListener() {
             @Override
