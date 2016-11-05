@@ -8,6 +8,7 @@ import org.w3c.dom.ls.LSSerializer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
+import java.util.Arrays;
 
 /**
  * Created by martinrosellen on 04/11/2016.
@@ -56,7 +57,7 @@ public class entry_reader  {
             for (int i = 0; i < eList.getLength(); i++){
                 Node nNode = eList.item(i);
                 String temp = innerXml(nNode);
-                // temp = temp.trim();
+                temp = trimLines(temp);
                 textList[i] = temp;
                 Element eElement = (Element) nNode;
                 entriesList[i]= eElement.getAttribute("id") + "   :   " + eElement.getAttribute("d:title");
@@ -70,6 +71,8 @@ public class entry_reader  {
         }
 
     }
+
+    // get text with styling tags from xml
     public String innerXml(Node node) {
         DOMImplementationLS lsImpl = (DOMImplementationLS)node.getOwnerDocument().getImplementation().getFeature("LS", "3.0");
         LSSerializer lsSerializer = lsImpl.createLSSerializer();
@@ -83,4 +86,14 @@ public class entry_reader  {
         return sb.toString();
     }
 
+    // remove trailing and leading whitespaces
+    public String trimLines (String text){
+        String[] lines = text.split(System.getProperty("line.separator"));
+        String out = "";
+        // i = 1 to remove first blank line
+        for (int i = 1; i < lines.length; i++){
+            out = out + lines[i].trim() + "\n";
+        }
+        return out;
+    }
 }
