@@ -55,7 +55,9 @@ public class entry_reader  {
 
             for (int i = 0; i < eList.getLength(); i++){
                 Node nNode = eList.item(i);
-                textList[i] = innerXml(nNode);
+                String temp = innerXml(nNode);
+                // temp = temp.trim();
+                textList[i] = temp;
                 Element eElement = (Element) nNode;
                 entriesList[i]= eElement.getAttribute("id") + "   :   " + eElement.getAttribute("d:title");
 //                System.out.println(eElement.getAttribute("id"));
