@@ -14,7 +14,7 @@ import java.util.Arrays;
  * Created by martinrosellen on 04/11/2016.
  */
 public class entry_reader  {
-    String [] entriesList;
+    String [][] entriesList;
     NodeList eList;
     NodeList iList;
     String [] textList;
@@ -51,7 +51,7 @@ public class entry_reader  {
             iList = doc.getElementsByTagName("d:index");
             eList = doc.getElementsByTagName("d:entry");
             // System.out.print(eList.getLength());
-            entriesList = new String[eList.getLength()];
+            entriesList = new String[eList.getLength()][2];
             textList = new String[eList.getLength()];
 
             for (int i = 0; i < eList.getLength(); i++){
@@ -60,7 +60,8 @@ public class entry_reader  {
                 temp = trimLines(temp);
                 textList[i] = temp;
                 Element eElement = (Element) nNode;
-                entriesList[i]= eElement.getAttribute("id") + "   :   " + eElement.getAttribute("d:title");
+                entriesList[i][0] = eElement.getAttribute("id");
+                entriesList[i][1] = eElement.getAttribute("d:title");
 //                System.out.println(eElement.getAttribute("id"));
 //                System.out.println(eElement.getAttribute("d:title"));
 
@@ -96,4 +97,5 @@ public class entry_reader  {
         }
         return out;
     }
+
 }
