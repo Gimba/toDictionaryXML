@@ -548,4 +548,38 @@ initial velocity
 <d:index d:value="value"/>
 initial velocity
 </d:entry>
+<d:entry id="skull_strip1" d:title="Skull stripping">
+<d:index d:value="Skull stripping"/>
+
+<ul>
+<li>Removal of extrameningeal tissue from the MRI volume of the whole head</li>
+<li>Find boundary between brain and the skull</li>
+<li>Use darkness of CSF and skull on T1 scans for edge detection</li>
+<li>Strong edges are not always that strong due to:</li>
+
+<ul>
+<li>Finite resolution</li>
+<li>Annatomical connections with body</li>
+
+<ul>
+<li>eg. optic nerves, brainstem</li>
+</ul>
+</ul>
+
+<ul>
+<li>Process</li>
+
+<ul>
+<li>anisotropic filter</li>
+
+<ul>
+<li>smooth lower amplitude differences in the image while retaining larger ones</li>
+<li>high-contrast edges are kept, low contrast is blurred</li>
+</ul>
+</ul>
+</ul>
+</ul>
+</d:entry>
+
+
 </d:dictionary>

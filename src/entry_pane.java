@@ -41,14 +41,14 @@ public class entry_pane extends JPanel {
         tagControls.setLayout(new BoxLayout(tagControls, BoxLayout.PAGE_AXIS));
 
         myButton init_list = new myButton("<ul>");
-        myButton end_list = new myButton("</ul>");
+        // myButton end_list = new myButton("</ul>");
         myButton init_item = new myButton("<li>");
-        myButton end_item = new myButton("</li>");
+        // myButton end_item = new myButton("</li>");
 
         tagControls.add(init_list);
-        tagControls.add(end_list);
+        //tagControls.add(end_list);
         tagControls.add(init_item);
-        tagControls.add(end_item);
+        //tagControls.add(end_item);
 
         add(tagControls, BorderLayout.EAST);
 
@@ -76,26 +76,28 @@ public class entry_pane extends JPanel {
         init_list.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 text.replaceSelection("");
-                text.insert("\n<ul>\n", text.getCaretPosition());
+                text.insert("\n<ul>\n\n</ul>", text.getCaretPosition());
+                text.setCaretPosition(text.getCaretPosition()-6);
             }
         });
-        end_list.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                text.replaceSelection("");
-                text.insert("\n</ul>\n", text.getCaretPosition());
-            }
-        });
+//        end_list.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                text.replaceSelection("");
+//                text.insert("\n</ul>\n", text.getCaretPosition());
+//            }
+//        });
         init_item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 text.replaceSelection("");
-                text.insert("<li>", text.getCaretPosition());
+                text.insert("<li></li>", text.getCaretPosition());
+                text.setCaretPosition(text.getCaretPosition()-5);
             }
         });
-        end_item.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                text.replaceSelection("");
-                text.insert("</li>", text.getCaretPosition());
-            }
-        });
+//        end_item.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                text.replaceSelection("");
+//                text.insert("</li>", text.getCaretPosition());
+//            }
+//        });
     }
 }

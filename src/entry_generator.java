@@ -22,6 +22,8 @@ public class entry_generator {
         if (!file.exists()) {
             file.createNewFile();
         }
+
+        System.out.println(xml_entry);
         FileWriter fw = new FileWriter(file, true);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(xml_entry);
