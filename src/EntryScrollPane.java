@@ -21,7 +21,7 @@ public class EntryScrollPane {
             "title"};
     JTable table = new JTable();
     Object [][] data;
-    public EntryScrollPane(JTextField id, JTextField value, JTextField title, JTextArea text){
+    public EntryScrollPane(XmlReader xmlReader, JTextField id, JTextField value, JTextField title, JTextArea text){
         this.id = id;
         this.value = value;
         this.title = title;
@@ -31,18 +31,13 @@ public class EntryScrollPane {
         // GridBagConstraints c2 = new GridBagConstraints();
 //        JTable table = new JTable();
 
-        try {
-
-            this.xml_reader = new XmlReader();
+            this.xml_reader = xmlReader;
             // String[] lines = xml_reader.entriesList;
             data = xml_reader.getTableData();
             DefaultTableModel model = new DefaultTableModel(data, columnNames);
             table = new JTable();
             table.setModel(model);
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
         entry_list.add(table);
 
         scrollPane = new JScrollPane(entry_list,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -59,25 +54,12 @@ public class EntryScrollPane {
                 return;
             }
 
-            //System.out.println(table.getSelectionModel().getLeadSelectionIndex());
             int index = table.getSelectionModel().getLeadSelectionIndex();
 
-            //System.out.println(xml_reader.eList.item(index));
-            Node eNode = xml_reader.eList.item(index);
-            Element eElement = (Element) eNode;
-            text.setText(xml_reader.textList[index]);
-
-
-            id.setText(eElement.getAttribute("id"));
-            title.setText(eElement.getAttribute("d:title"));
-
-            Node iNode = xml_reader.iList.item(index);
-            Element iElement = (Element) iNode;
-            value.setText(iElement.getAttribute("d:value"));
-
-            //xml_reader.entriesList.remove(index);
-            //data = xml_reader.toObjectArray(xml_reader.entriesList);
-            // System.out.println(data.length);
+            id.setText(xml_reader.getID(index));
+            title.setText(xml_reader.getTitle(index));
+            value.setText(xml_reader.getValue(index));
+            text.setText(xml_reader.getText(index));
 
         }
     }

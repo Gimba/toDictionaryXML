@@ -56,11 +56,7 @@ public class XmlWriter {
 
     }
 
-    public void addToList(List<String[]> list, String id, String title, String value, String text){
-            list.add(new String[]{id, title,value,text});
-    }
-
-    public String listToXMLString(List<String[]> list){
+    public static String listToXMLString(List<String[]> list){
 
         String out = "";
 
@@ -72,7 +68,7 @@ public class XmlWriter {
         return out;
     }
 
-    public String addDocTags(String in){
+    public static String addDocTags(String in){
         String out = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                 "<d:dictionary xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:d=\"http://www.apple.com/DTDs/DictionaryService-1.0.rng\">\n";
         out = out + in;
@@ -81,9 +77,11 @@ public class XmlWriter {
         return out;
     }
 
-    public void writeXMLFile(String xmlString){
+
+    public static void writeXMLFile(String xmlString){
         try {
-            File file = new File(fileName + "test");
+            String fileName = "output/entries.xml";
+            File file = new File(fileName);
 
             // if file doesnt exists, then create it
             if (!file.exists()) {
@@ -99,15 +97,12 @@ public class XmlWriter {
         }
 
     }
-    public List<String[]> toList(NodeList eList, NodeList iList){
-        List<String[]> outList = new LinkedList<>();
-        for (int i = 0; i < eList.getLength(); i++){
-            Element entry = (Element) eList.item(i);
-            Element value = (Element) iList.item(i);
-            outList.add(new String[]{entry.getAttribute("id"), entry.getAttribute("d:title"), value.getAttribute("d:value"), XmlReader.innerXml(entry)});
-        }
-        return outList;
-    }
 
+    public static void writeXML(List<String[]> list){
+        String str = listToXMLString(list);
+        str = addDocTags(str);
+        writeXMLFile(str);
+        System.out.println("write");
+    }
 
 }

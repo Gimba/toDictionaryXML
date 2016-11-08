@@ -7,14 +7,14 @@ public class main {
     {
         new MainDialog();
 
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        System.exit(0);
-                    }
-                },
-                15000
-        );
+//        new java.util.Timer().schedule(
+//                new java.util.TimerTask() {
+//                    @Override
+//                    public void run() {
+//                        System.exit(0);
+//                    }
+//                },
+//                15000
+//        );
     }
 }

@@ -1,4 +1,5 @@
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.ls.DOMImplementationLS;
@@ -7,36 +8,24 @@ import org.w3c.dom.ls.LSSerializer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by martinrosellen on 04/11/2016.
  */
 public class XmlReader {
-//    List<String[]> entriesList = new ArrayList<>();
+    File file = new File("output/entries.xml");
+
     NodeList eList;
     NodeList iList;
-    String [] textList;
+
+
     private List<String[]> list;
     String xmlString;
-    File file = new File("output/entries.xml");
+
     public XmlReader() throws FileNotFoundException {
-//        FileReader fr = new FileReader("output/entries.xml");
-//
-//        BufferedReader bf = new BufferedReader(fr);
-//
-//
-//        try {
-//            String line;
-//            List<String> line_list = new LinkedList<String>();
-//            while ((line = bf.readLine()) != null){
-//                line_list.add(line);
-//            }
-//            // entriesList = new String[line_list.size()];
-//            entriesList = line_list.toArray(new String[0]);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
         loadData();
     }
 
@@ -65,7 +54,7 @@ public class XmlReader {
         return out;
     }
 
-    // ArrayList to ObjectArray
+    // List to ObjectArray
     public Object[][] toObjectArray(List list){
         Object[][] array = new String[list.size()][2];
         for(int i = 0; i <list.size(); i++){
@@ -85,33 +74,12 @@ public class XmlReader {
             Document doc = dBuilder.parse(file);
             doc.getDocumentElement().normalize();
 
-            //Node n = doc.getFirstChild();
-            //NodeList nl = n.getChildNodes();
-            //System.out.println(doc.getDocumentElement());
-
             iList = doc.getElementsByTagName("d:index");
             eList = doc.getElementsByTagName("d:entry");
-            // System.out.print(eList.getLength());
 
             XmlWriter eg = new XmlWriter();
-            list = eg.toList(eList, iList);
 
-
-
-//            textList = new String[eList.getLength()];
-//
-//            for (int i = 0; i < eList.getLength(); i++){
-//                Node nNode = eList.item(i);
-//                String temp = innerXml(nNode);
-//                temp = trimLines(temp);
-//                textList[i] = temp;
-//                Element eElement = (Element) nNode;
-//                entriesList.add(new String []{eElement.getAttribute("id"),eElement.getAttribute("d:title")});
-//
-////                System.out.println(eElement.getAttribute("id"));
-////                System.out.println(eElement.getAttribute("d:title"));
-//
-//            }
+            list = toList(eList, iList);
 
 
         } catch (Exception e) {
@@ -126,4 +94,47 @@ public class XmlReader {
         }
         return tableDataArray;
     }
+
+    public String getID(int i){
+        return list.get(i)[0];
+    }
+
+    public String getTitle(int i){
+        return list.get(i)[1];
+    }
+
+    public String getValue(int i){
+        return list.get(i)[2];
+    }
+
+    public String getText(int i){
+        return trimLines(list.get(i)[3]);
+    }
+
+    public List<String[]> toList(NodeList eList, NodeList iList){
+        List<String[]> outList = new LinkedList<>();
+        for (int i = 0; i < eList.getLength(); i++){
+            Element entry = (Element) eList.item(i);
+            Element value = (Element) iList.item(i);
+            outList.add(new String[]{entry.getAttribute("id"), entry.getAttribute("d:title"), value.getAttribute("d:value"), XmlReader.innerXml(entry)});
+        }
+        return outList;
+    }
+
+    public void addToList(String id, String title, String value, String text){
+        list.add(new String[]{id, title,value,text});
+    }
+
+    public void updateListItem(int index, String id, String title, String value, String text){
+        list.set(index, new String[]{id, title,value,text});
+    }
+
+    public List getList(){
+        return list;
+    }
+
+    public void updateEntry(int index, String[] values){
+        list.set(index, values);
+    }
+
 }

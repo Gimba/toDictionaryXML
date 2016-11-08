@@ -11,10 +11,8 @@ public class InputPanel extends JPanel {
     JTextField title;
     JTextField value;
     JTextArea text;
-
-    EntryScrollPane indexList;
-    public InputPanel() {
-        this.indexList = indexList;
+    EntryScrollPane entryScrollPane;
+    public InputPanel(XmlReader xmlReader) {
         setLayout(new BorderLayout());
         // xml fields that can be an input
         JPanel inputFields = new JPanel(new FlowLayout());
@@ -56,33 +54,38 @@ public class InputPanel extends JPanel {
         JPanel fileControl = new JPanel();
 
         MyButton add = new MyButton("Add");
-        MyButton finish = new MyButton("Finish");
+        MyButton updateEntry = new MyButton("Update Entry");
 
         fileControl.add(add);
-        fileControl.add(finish);
+        fileControl.add(updateEntry);
 
         add(fileControl, BorderLayout.SOUTH);
 
 
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    XmlWriter eg =new XmlWriter(id.getText(), title.getText(), value.getText(), text.getText());
-                    indexList.xml_reader.loadData();
-                    indexList.data = indexList.xml_reader.getTableData();
-                    System.out.println(indexList.data.length);
-                    DefaultTableModel model = new DefaultTableModel(indexList.data, indexList.columnNames);
-                    indexList.table.setModel(model);
-                    indexList.table.repaint();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    XmlWriter eg =new XmlWriter();
+                    xmlReader.addToList(id.getText(), title.getText(), value.getText(), text.getText());
+                DefaultTableModel model = (DefaultTableModel) entryScrollPane.table.getModel();
+                model.addRow(new Object[]{id.getText(), title.getText()});
+
+
+                eg.writeXML(xmlReader.getList());
             }
         });
 
-        finish.addActionListener(new java.awt.event.ActionListener() {
+        updateEntry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                XmlWriter eg =new XmlWriter();
+                int selected = entryScrollPane.table.getSelectionModel().getLeadSelectionIndex();
 
+                xmlReader.updateEntry(selected, new String[]{id.getText(), title.getText(), value.getText(), text.getText()});
+
+                DefaultTableModel model = (DefaultTableModel) entryScrollPane.table.getModel();
+                entryScrollPane.table.setValueAt(id.getText(),selected,0);
+                entryScrollPane.table.setValueAt(title.getText(),selected,1);
+
+                eg.writeXML(xmlReader.getList());
 
 
             }
@@ -116,7 +119,7 @@ public class InputPanel extends JPanel {
 //        });
     }
 
-    public void setIndexList(EntryScrollPane indexList) {
-        this.indexList = indexList;
+    public void setIndexList(EntryScrollPane entryScrollPane) {
+        this.entryScrollPane = entryScrollPane;
     }
 }
