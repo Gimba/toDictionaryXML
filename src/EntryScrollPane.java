@@ -9,10 +9,10 @@ import java.io.FileNotFoundException;
 /**
  * Created by martinrosellen on 04/11/2016.
  */
-public class IndexList {
+public class EntryScrollPane {
     JPanel entry_list = new JPanel();
     JScrollPane scrollPane;
-    entry_reader xml_reader;
+    XmlReader xml_reader;
     JTextField id;
     JTextField value;
     JTextField title;
@@ -21,7 +21,7 @@ public class IndexList {
             "title"};
     JTable table = new JTable();
     Object [][] data;
-    public IndexList(JTextField id, JTextField value, JTextField title, JTextArea text){
+    public EntryScrollPane(JTextField id, JTextField value, JTextField title, JTextArea text){
         this.id = id;
         this.value = value;
         this.title = title;
@@ -33,7 +33,7 @@ public class IndexList {
 
         try {
 
-            this.xml_reader = new entry_reader();
+            this.xml_reader = new XmlReader();
             // String[] lines = xml_reader.entriesList;
             data = xml_reader.getTableData();
             DefaultTableModel model = new DefaultTableModel(data, columnNames);

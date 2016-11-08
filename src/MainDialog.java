@@ -1,18 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.FileNotFoundException;
 
 /**
  * Created by martinrosellen on 04/11/2016.
  */
-public class entry_dialog extends JFrame {
+public class MainDialog extends JFrame {
 
-    public entry_dialog() {
+    public MainDialog() {
         setSize(1200,500);
 
-        entry_pane listPane = new entry_pane();
+        InputPanel listPane = new InputPanel();
 
-        IndexList indexList = new IndexList(listPane.id, listPane.value, listPane.title, listPane.text);
+        EntryScrollPane indexList = new EntryScrollPane(listPane.id, listPane.value, listPane.title, listPane.text);
 
         add(indexList.scrollPane,BorderLayout.EAST);
         // pack();

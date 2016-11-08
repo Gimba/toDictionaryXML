@@ -1,5 +1,4 @@
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.ls.DOMImplementationLS;
@@ -8,14 +7,12 @@ import org.w3c.dom.ls.LSSerializer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by martinrosellen on 04/11/2016.
  */
-public class entry_reader  {
+public class XmlReader {
 //    List<String[]> entriesList = new ArrayList<>();
     NodeList eList;
     NodeList iList;
@@ -23,7 +20,7 @@ public class entry_reader  {
     private List<String[]> list;
     String xmlString;
     File file = new File("output/entries.xml");
-    public entry_reader() throws FileNotFoundException {
+    public XmlReader() throws FileNotFoundException {
 //        FileReader fr = new FileReader("output/entries.xml");
 //
 //        BufferedReader bf = new BufferedReader(fr);
@@ -96,7 +93,7 @@ public class entry_reader  {
             eList = doc.getElementsByTagName("d:entry");
             // System.out.print(eList.getLength());
 
-            entry_generator eg = new entry_generator();
+            XmlWriter eg = new XmlWriter();
             list = eg.toList(eList, iList);
 
 

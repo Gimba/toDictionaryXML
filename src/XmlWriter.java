@@ -1,18 +1,16 @@
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.*;
-import java.util.AbstractList;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by martinrosellen on 04/11/2016.
  */
-public class entry_generator {
+public class XmlWriter {
     String fileName = "output/entries.xml";
-    public entry_generator(String id, String title, String value, String text) throws IOException {
+    public XmlWriter(String id, String title, String value, String text) throws IOException {
 //      <d:entry id="distal" d:title="Distal">
 //		<d:index d:value="Distal"/>
 //		<h1>Distal</h1>
@@ -37,7 +35,7 @@ public class entry_generator {
         bw.close();
 
     }
-    public entry_generator(){};
+    public XmlWriter(){};
 
     public void deleteLastLine(){
         RandomAccessFile f = null;
@@ -106,7 +104,7 @@ public class entry_generator {
         for (int i = 0; i < eList.getLength(); i++){
             Element entry = (Element) eList.item(i);
             Element value = (Element) iList.item(i);
-            outList.add(new String[]{entry.getAttribute("id"), entry.getAttribute("d:title"), value.getAttribute("d:value"), entry_reader.innerXml(entry)});
+            outList.add(new String[]{entry.getAttribute("id"), entry.getAttribute("d:title"), value.getAttribute("d:value"), XmlReader.innerXml(entry)});
         }
         return outList;
     }

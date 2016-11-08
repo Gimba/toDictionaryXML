@@ -5,7 +5,7 @@
 public class main {
     public static void main(String [ ] args)
     {
-        new entry_dialog();
+        new MainDialog();
 
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {

@@ -6,14 +6,14 @@ import java.io.IOException;
 /**
  * Created by martinrosellen on 04/11/2016.
  */
-public class entry_pane extends JPanel {
+public class InputPanel extends JPanel {
     JTextField id;
     JTextField title;
     JTextField value;
     JTextArea text;
 
-    IndexList indexList;
-    public entry_pane() {
+    EntryScrollPane indexList;
+    public InputPanel() {
         this.indexList = indexList;
         setLayout(new BorderLayout());
         // xml fields that can be an input
@@ -40,10 +40,10 @@ public class entry_pane extends JPanel {
         JPanel tagControls = new JPanel();
         tagControls.setLayout(new BoxLayout(tagControls, BoxLayout.PAGE_AXIS));
 
-        myButton init_list = new myButton("<ul>");
-        // myButton end_list = new myButton("</ul>");
-        myButton init_item = new myButton("<li>");
-        // myButton end_item = new myButton("</li>");
+        MyButton init_list = new MyButton("<ul>");
+        // MyButton end_list = new MyButton("</ul>");
+        MyButton init_item = new MyButton("<li>");
+        // MyButton end_item = new MyButton("</li>");
 
         tagControls.add(init_list);
         //tagControls.add(end_list);
@@ -55,8 +55,8 @@ public class entry_pane extends JPanel {
         // save entry and finish button
         JPanel fileControl = new JPanel();
 
-        myButton add = new myButton("Add");
-        myButton finish = new myButton("Finish");
+        MyButton add = new MyButton("Add");
+        MyButton finish = new MyButton("Finish");
 
         fileControl.add(add);
         fileControl.add(finish);
@@ -67,7 +67,7 @@ public class entry_pane extends JPanel {
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-                    entry_generator eg =new entry_generator(id.getText(), title.getText(), value.getText(), text.getText());
+                    XmlWriter eg =new XmlWriter(id.getText(), title.getText(), value.getText(), text.getText());
                     indexList.xml_reader.loadData();
                     indexList.data = indexList.xml_reader.getTableData();
                     System.out.println(indexList.data.length);
@@ -116,7 +116,7 @@ public class entry_pane extends JPanel {
 //        });
     }
 
-    public void setIndexList(IndexList indexList) {
+    public void setIndexList(EntryScrollPane indexList) {
         this.indexList = indexList;
     }
 }
