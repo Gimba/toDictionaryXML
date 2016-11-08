@@ -9,6 +9,8 @@ public class MainDialog extends JFrame {
 
     public MainDialog() {
         setSize(1200,500);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
         XmlReader xmlReader = null;
         try {

@@ -33,14 +33,16 @@ public class InputPanel extends JPanel {
         inputFields.add(id_label, FlowLayout.LEFT);
 
 
-
         add(inputFields, BorderLayout.NORTH);
 
         // text field
         JPanel textPanel = new JPanel(new BorderLayout());
-        text = new JTextArea("initial velocity", 10, 3);
+        text = new JTextArea();
+        text.setLineWrap(true);
+        textPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         textPanel.setSize(200,200);
         textPanel.add(text);
+
         add(textPanel,BorderLayout.CENTER);
 
         // control over xml list tags
