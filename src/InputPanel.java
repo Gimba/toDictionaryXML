@@ -54,6 +54,9 @@ public class InputPanel extends JPanel {
         MyButton init_item = new MyButton("<li>");
         // MyButton end_item = new MyButton("</li>");
 
+        MyButton init_h1 = new MyButton("<h1>");
+
+        tagControls.add(init_h1);
         tagControls.add(init_list);
         //tagControls.add(end_list);
         tagControls.add(init_item);
@@ -119,6 +122,14 @@ public class InputPanel extends JPanel {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 text.replaceSelection("");
                 text.insert("<li></li>", text.getCaretPosition());
+                text.setCaretPosition(text.getCaretPosition()-5);
+            }
+        });
+
+        init_h1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text.replaceSelection("");
+                text.insert("<h1></h1>", text.getCaretPosition());
                 text.setCaretPosition(text.getCaretPosition()-5);
             }
         });
