@@ -45,7 +45,7 @@ public class entry_reader  {
     }
 
     // get text with styling tags from xml
-    public String innerXml(Node node) {
+    public static String innerXml(Node node) {
         DOMImplementationLS lsImpl = (DOMImplementationLS)node.getOwnerDocument().getImplementation().getFeature("LS", "3.0");
         LSSerializer lsSerializer = lsImpl.createLSSerializer();
         lsSerializer.getDomConfig().setParameter("xml-declaration", false);
@@ -99,7 +99,9 @@ public class entry_reader  {
 
             entry_generator eg = new entry_generator();
             eg.nodeListToString(eList, iList);
-            eg.addDocTags(eg.nodeListToString(eList, iList));
+            String out = eg.addDocTags(eg.nodeListToString(eList, iList));
+            eg.writeXMLFile(out);
+
 
             textList = new String[eList.getLength()];
 

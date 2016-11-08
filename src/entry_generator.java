@@ -1,7 +1,11 @@
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.*;
+import java.util.AbstractList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by martinrosellen on 04/11/2016.
@@ -26,7 +30,7 @@ public class entry_generator {
             file.createNewFile();
         }
 
-        System.out.println(xml_entry);
+
         FileWriter fw = new FileWriter(file, true);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(xml_entry);
@@ -53,15 +57,19 @@ public class entry_generator {
         }
 
     }
-    public String nodeListToString(NodeList eList, NodeList iList){
+
+    public void addToList(List<String[]> list, String id, String title, String value, String text){
+            list.add(new String[]{id, title,value,text});
+    }
+
+    public String listToXMLString(List<String[]> list){
+
         String out = "";
 
-        for(int i = 0; i < eList.getLength(); i++){
-            Element entry = (Element) eList.item(i);
-            Element value = (Element) iList.item(i);
-            out = out + "<d:entry id=\"" + entry.getAttribute("id") + "\" d:title=\"" + entry.getAttribute("d:title") + "\">";
-            out = out + "\n<d:index d:value=\"" + value.getAttribute("d:value") + "\" />";
-            out = out + entry.getTextContent() + "\n</d:entry>\n";
+        for(int i = 0; i < list.size(); i++){
+            out = out + "<d:entry id=\"" + list.get(i)[0] + "\" d:title=\"" +list.get(i)[1] + "\">";
+            out = out + "\n<d:index d:value=\"" + list.get(i)[2] + "\" />";
+            out = out + list.get(i)[3] + "\n</d:entry>\n";
         }
         return out;
     }
@@ -71,8 +79,36 @@ public class entry_generator {
                 "<d:dictionary xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:d=\"http://www.apple.com/DTDs/DictionaryService-1.0.rng\">\n";
         out = out + in;
         out = out + "\n</d:dictionary>";
-        System.out.println(out);
+
         return out;
+    }
+
+    public void writeXMLFile(String xmlString){
+        try {
+            File file = new File(fileName + "test");
+
+            // if file doesnt exists, then create it
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file, false);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(xmlString);
+            bw.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    public List<String[]> toList(NodeList eList, NodeList iList){
+        List<String[]> outList = new LinkedList<>();
+        for (int i = 0; i < eList.getLength(); i++){
+            Element entry = (Element) eList.item(i);
+            Element value = (Element) iList.item(i);
+            outList.add(new String[]{entry.getAttribute("id"), entry.getAttribute("d:title"), value.getAttribute("d:value"), entry_reader.innerXml(entry)});
+        }
+        return outList;
     }
 
 
