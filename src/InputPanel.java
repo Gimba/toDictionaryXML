@@ -21,9 +21,18 @@ public class InputPanel extends JPanel {
         title = new JTextField("title", 10);
         value = new JTextField("value", 10);
 
-        inputFields.add(id, FlowLayout.LEFT);
-        inputFields.add(title, FlowLayout.LEFT);
+        JLabel id_label = new JLabel("ID");
+        JLabel title_label = new JLabel("Title");
+        JLabel value_label = new JLabel("Value");
+
         inputFields.add(value, FlowLayout.LEFT);
+        inputFields.add(value_label, FlowLayout.LEFT);
+        inputFields.add(title, FlowLayout.LEFT);
+        inputFields.add(title_label, FlowLayout.LEFT);
+        inputFields.add(id, FlowLayout.LEFT);
+        inputFields.add(id_label, FlowLayout.LEFT);
+
+
 
         add(inputFields, BorderLayout.NORTH);
 
