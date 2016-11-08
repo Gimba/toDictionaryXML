@@ -1,11 +1,9 @@
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import javax.swing.table.DefaultTableModel;
 import java.io.FileNotFoundException;
 
 /**
@@ -22,6 +20,7 @@ public class IndexList {
     String[] columnNames = {"id",
             "title"};
     JTable table = new JTable();
+    Object [][] data;
     public IndexList(JTextField id, JTextField value, JTextField title, JTextArea text){
         this.id = id;
         this.value = value;
@@ -36,7 +35,10 @@ public class IndexList {
 
             this.xml_reader = new entry_reader();
             // String[] lines = xml_reader.entriesList;
-            table = new JTable(xml_reader.entriesList, columnNames);
+            data = xml_reader.toObjectArray(xml_reader.entriesList);
+            DefaultTableModel model = new DefaultTableModel(data, columnNames);
+            table = new JTable();
+            table.setModel(model);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -56,10 +58,11 @@ public class IndexList {
             if (event.getValueIsAdjusting()) {
                 return;
             }
-            System.out.println(table.getSelectionModel().getLeadSelectionIndex());
+
+            //System.out.println(table.getSelectionModel().getLeadSelectionIndex());
             int index = table.getSelectionModel().getLeadSelectionIndex();
 
-            System.out.println(xml_reader.eList.item(index));
+            //System.out.println(xml_reader.eList.item(index));
             Node eNode = xml_reader.eList.item(index);
             Element eElement = (Element) eNode;
             text.setText(xml_reader.textList[index]);
@@ -71,6 +74,11 @@ public class IndexList {
             Node iNode = xml_reader.iList.item(index);
             Element iElement = (Element) iNode;
             value.setText(iElement.getAttribute("d:value"));
+
+            //xml_reader.entriesList.remove(index);
+            //data = xml_reader.toObjectArray(xml_reader.entriesList);
+            // System.out.println(data.length);
+
         }
     }
 }

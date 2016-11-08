@@ -11,15 +11,16 @@ public class entry_dialog extends JFrame {
         setSize(1200,500);
 
         entry_pane listPane = new entry_pane();
-        add(listPane, BorderLayout.CENTER);
 
         IndexList indexList = new IndexList(listPane.id, listPane.value, listPane.title, listPane.text);
 
         add(indexList.scrollPane,BorderLayout.EAST);
         // pack();
+
+        add(listPane, BorderLayout.CENTER);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
+        listPane.setIndexList(indexList);
     }
+
 }

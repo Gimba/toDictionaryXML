@@ -512,74 +512,111 @@
 
 	</d:entry>
 
-	<d:entry id="front_back_matter" d:title="Front/Back Matter">
-		<h1><b>My Dictionary</b></h1>
-		<h2>Front/Back Matter</h2>
-		<div>
-			This is a front matter page of the sample dictionary.<br/><br/>
-		</div>
-		<div>
-			<b>To see</b> this page,
-			<ol>
-				<li>Open "Go" menu.</li>
-				<li>Choose "Front/Back Matter" menu item. 
-					If it has sub-menu items, choose one of them.</li>
-				</ol>
-			</div>
-			<div>
-				<b>To prepare</b> the menu item, do the followings.
-				<ol>
-					<li>Prepare this page source as an entry.</li>
-					<li>Add "DCSDictionaryFrontMatterReferenceID" key and its value to the plist of the dictionary.
-						The value should be the string of this page entry id. </li>
-					</ol>
-				</div>
-				<br/>
-			</d:entry>
-<d:entry id="id" d:title="title">
-<d:index d:value="value"/>
-initial velocity
+
+	<d:entry id="id" d:title="title">
+		<d:index d:value="value"/>
+		initial velocity
+	</d:entry>
+	<d:entry id="id" d:title="title">
+		<d:index d:value="value"/>
+		initial velocity
+	</d:entry>
+	<d:entry id="id" d:title="title">
+		<d:index d:value="value"/>
+		initial velocity
+	</d:entry>
+	<d:entry id="skull_strip1" d:title="Skull stripping">
+		<d:index d:value="Skull stripping"/>
+
+		<ul>
+			<li>Removal of extrameningeal tissue from the MRI volume of the whole head</li>
+			<li>Find boundary between brain and the skull</li>
+			<li>Use darkness of CSF and skull on T1 scans for edge detection</li>
+			<li>Strong edges are not always that strong due to:</li>
+
+			<ul>
+				<li>Finite resolution</li>
+				<li>Annatomical connections with body</li>
+
+				<ul>
+					<li>eg. optic nerves, brainstem</li>
+				</ul>
+			</ul>
+
+			<ul>
+				<li>Process</li>
+
+				<ul>
+					<li>anisotropic filter</li>
+
+					<ul>
+						<li>smooth lower amplitude differences in the image while retaining larger ones</li>
+						<li>high-contrast edges are kept, low contrast is blurred</li>
+					</ul>
+				</ul>
+			</ul>
+		</ul>
+	</d:entry>
+<d:entry id="ENSS" d:title="elastic-net regularization with stability selection">
+<d:index d:value="ENSS"/>
+elastic-net regularization with stability selection
 </d:entry>
-<d:entry id="id" d:title="title">
-<d:index d:value="value"/>
-initial velocity
-</d:entry>
-<d:entry id="id" d:title="title">
-<d:index d:value="value"/>
-initial velocity
-</d:entry>
-<d:entry id="skull_strip1" d:title="Skull stripping">
-<d:index d:value="Skull stripping"/>
+<d:entry id="pearson_1" d:title="Pearson Correlation">
+<d:index d:value="Pearson Correlation"/>
+Pearson Correlation to find functional connectivity
 
 <ul>
-<li>Removal of extrameningeal tissue from the MRI volume of the whole head</li>
-<li>Find boundary between brain and the skull</li>
-<li>Use darkness of CSF and skull on T1 scans for edge detection</li>
-<li>Strong edges are not always that strong due to:</li>
-
-<ul>
-<li>Finite resolution</li>
-<li>Annatomical connections with body</li>
-
-<ul>
-<li>eg. optic nerves, brainstem</li>
-</ul>
-</ul>
-
-<ul>
-<li>Process</li>
-
-<ul>
-<li>anisotropic filter</li>
-
-<ul>
-<li>smooth lower amplitude differences in the image while retaining larger ones</li>
-<li>high-contrast edges are kept, low contrast is blurred</li>
-</ul>
-</ul>
-</ul>
+<li>calculate correlation coefficients of mean time series of regions</li>
+<li>threshold to create connectivity matrices</li>
+<li>weight or binarize matrices</li>
+<li>show interaction between MULTIPLE brain regions</li>
 </ul>
 </d:entry>
+<d:entry id="partial_1" d:title="Partial Correlation">
+<d:index d:value="Partial Correlation"/>
+Partial Correlations for functional networks
 
+<ul>
+<li>measure association between TWO regions while removing the effect of the others</li>
+<li>direct and indirect connectivity can be distinguished</li>
+<li>estimation of inverse covariance (ICOV) matrices</li>
+<li>non-zero entries of the ICOV matrix indicate non-zero partial correlations</li>
+<li>but: ill-posed problem</li>
+<li>addressed by imposing sparse constraints as regularization (general accepted that brain networks are sparse)</li>
+<li>norm regularization, such as L1-norm</li>
+<li>combination of L1- and L2-norm (elastic net (EN) regularization)</li>
+<li>EN regularization more robust</li>
+</ul>
+</d:entry>
+<d:entry id="FDR" d:title="False Discovery Rate">
+<d:index d:value="FDR"/>
+False Discovery Rate
+</d:entry>
+<d:entry id="alpha_1" d:title="Alpha in a Hypothesis test">
+<d:index d:value="Alpha in a Hypothesis test"/>
+Before you run any statistical test, you must first determine your alpha level, which is also called the “significance level.” By definition, the alpha level is the probability of rejecting the null hypothesis when the null hypothesis is true.
 
+Translation: It’s the probability of making a wrong decision.
+
+Thanks to famed statistician R. A. Fisher, most folks typically use an alpha level of 0.05.
+</d:entry>
+<d:entry id="p_val1" d:title="p-Value">
+<d:index d:value="p-Value"/>
+Statistically speaking, the p-value is the probability of obtaining a result as extreme as, or more extreme than, the result actually obtained when the null hypothesis is true.
+The p-value is basically the probability of obtaining your sample data IF the null hypothesis were true. So if you obtain a p-value of 0.85, then you have little reason to doubt the null hypothesis. However, if your p-value is say 0.02, there’s only a very small chance you would have obtained that data if the null hypothesis was in fact true.
+</d:entry>
+<d:entry id="confint" d:title="confidence interval">
+<d:index d:value="confidence interval"/>
+The confidence interval is the range of likely values for a population parameter, such as the population mean. For example, if you compute a 95% confidence interval for the average price of a Cairn terrier, then you can be 95% confident that the interval contains the true average cost of all Cairn terriers.
+</d:entry>
+<d:entry id="confint" d:title="confidence interval">
+<d:index d:value="confidence interval"/>
+The confidence interval is the range of likely values for a population parameter, such as the population mean. For example, if you compute a 95% confidence interval for the average price of a Cairn terrier, then you can be 95% confident that the interval contains the true average cost of all Cairn terriers.
+If alpha equals 0.05, then your confidence level is 0.95. If you increase alpha, you both increase the probability of incorrectly rejecting the null hypothesis and also decrease your confidence level.
+</d:entry>
+<d:entry id="confint" d:title="confidence interval">
+<d:index d:value="confidence interval"/>
+The confidence interval is the range of likely values for a population parameter, such as the population mean. For example, if you compute a 95% confidence interval for the average price of a Cairn terrier, then you can be 95% confident that the interval contains the true average cost of all Cairn terriers.
+If alpha equals 0.05, then your confidence level is 0.95. If you increase alpha, you both increase the probability of incorrectly rejecting the null hypothesis and also decrease your confidence level.
+</d:entry>
 </d:dictionary>

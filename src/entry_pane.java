@@ -1,7 +1,6 @@
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -13,8 +12,9 @@ public class entry_pane extends JPanel {
     JTextField value;
     JTextArea text;
 
-
+    IndexList indexList;
     public entry_pane() {
+        this.indexList = indexList;
         setLayout(new BorderLayout());
         // xml fields that can be an input
         JPanel inputFields = new JPanel(new FlowLayout());
@@ -68,11 +68,26 @@ public class entry_pane extends JPanel {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     entry_generator eg =new entry_generator(id.getText(), title.getText(), value.getText(), text.getText());
+                    indexList.xml_reader.loadData();
+                    indexList.data = indexList.xml_reader.toObjectArray(indexList.xml_reader.entriesList);
+                    System.out.println(indexList.data.length);
+                    DefaultTableModel model = new DefaultTableModel(indexList.data, indexList.columnNames);
+                    indexList.table.setModel(model);
+                    indexList.table.repaint();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
+
+        finish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+
+
+            }
+        });
+
         init_list.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 text.replaceSelection("");
@@ -99,5 +114,9 @@ public class entry_pane extends JPanel {
 //                text.insert("</li>", text.getCaretPosition());
 //            }
 //        });
+    }
+
+    public void setIndexList(IndexList indexList) {
+        this.indexList = indexList;
     }
 }

@@ -1,3 +1,6 @@
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import java.io.*;
 
 /**
@@ -30,6 +33,8 @@ public class entry_generator {
         bw.close();
 
     }
+    public entry_generator(){};
+
     public void deleteLastLine(){
         RandomAccessFile f = null;
         try {
@@ -48,4 +53,27 @@ public class entry_generator {
         }
 
     }
+    public String nodeListToString(NodeList eList, NodeList iList){
+        String out = "";
+
+        for(int i = 0; i < eList.getLength(); i++){
+            Element entry = (Element) eList.item(i);
+            Element value = (Element) iList.item(i);
+            out = out + "<d:entry id=\"" + entry.getAttribute("id") + "\" d:title=\"" + entry.getAttribute("d:title") + "\">";
+            out = out + "\n<d:index d:value=\"" + value.getAttribute("d:value") + "\" />";
+            out = out + entry.getTextContent() + "\n</d:entry>\n";
+        }
+        return out;
+    }
+
+    public String addDocTags(String in){
+        String out = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<d:dictionary xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:d=\"http://www.apple.com/DTDs/DictionaryService-1.0.rng\">\n";
+        out = out + in;
+        out = out + "\n</d:dictionary>";
+        System.out.println(out);
+        return out;
+    }
+
+
 }
