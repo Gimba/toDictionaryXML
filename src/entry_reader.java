@@ -16,10 +16,11 @@ import java.util.List;
  * Created by martinrosellen on 04/11/2016.
  */
 public class entry_reader  {
-    List<String[]> entriesList = new ArrayList<>();
+//    List<String[]> entriesList = new ArrayList<>();
     NodeList eList;
     NodeList iList;
     String [] textList;
+    private List<String[]> list;
     String xmlString;
     File file = new File("output/entries.xml");
     public entry_reader() throws FileNotFoundException {
@@ -40,8 +41,6 @@ public class entry_reader  {
 //            e.printStackTrace();
 //        }
         loadData();
-
-
     }
 
     // get text with styling tags from xml
@@ -98,30 +97,36 @@ public class entry_reader  {
             // System.out.print(eList.getLength());
 
             entry_generator eg = new entry_generator();
-            eg.nodeListToString(eList, iList);
-            String out = eg.addDocTags(eg.nodeListToString(eList, iList));
-            eg.writeXMLFile(out);
+            list = eg.toList(eList, iList);
 
 
-            textList = new String[eList.getLength()];
 
-            for (int i = 0; i < eList.getLength(); i++){
-                Node nNode = eList.item(i);
-                String temp = innerXml(nNode);
-                temp = trimLines(temp);
-                textList[i] = temp;
-                Element eElement = (Element) nNode;
-                entriesList.add(new String []{eElement.getAttribute("id"),eElement.getAttribute("d:title")});
-
-//                System.out.println(eElement.getAttribute("id"));
-//                System.out.println(eElement.getAttribute("d:title"));
-
-            }
+//            textList = new String[eList.getLength()];
+//
+//            for (int i = 0; i < eList.getLength(); i++){
+//                Node nNode = eList.item(i);
+//                String temp = innerXml(nNode);
+//                temp = trimLines(temp);
+//                textList[i] = temp;
+//                Element eElement = (Element) nNode;
+//                entriesList.add(new String []{eElement.getAttribute("id"),eElement.getAttribute("d:title")});
+//
+////                System.out.println(eElement.getAttribute("id"));
+////                System.out.println(eElement.getAttribute("d:title"));
+//
+//            }
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    public Object[][] getTableData(){
+        String[][] tableDataArray = new String[list.size()][2];
+        for(int i = 0; i <tableDataArray.length; i++){
+            tableDataArray[i][0] = list.get(i)[0];
+            tableDataArray[i][1] = list.get(i)[1];
+        }
+        return tableDataArray;
+    }
 }

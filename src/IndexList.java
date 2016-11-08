@@ -35,7 +35,7 @@ public class IndexList {
 
             this.xml_reader = new entry_reader();
             // String[] lines = xml_reader.entriesList;
-            data = xml_reader.toObjectArray(xml_reader.entriesList);
+            data = xml_reader.getTableData();
             DefaultTableModel model = new DefaultTableModel(data, columnNames);
             table = new JTable();
             table.setModel(model);

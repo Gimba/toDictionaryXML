@@ -69,7 +69,7 @@ public class entry_pane extends JPanel {
                 try {
                     entry_generator eg =new entry_generator(id.getText(), title.getText(), value.getText(), text.getText());
                     indexList.xml_reader.loadData();
-                    indexList.data = indexList.xml_reader.toObjectArray(indexList.xml_reader.entriesList);
+                    indexList.data = indexList.xml_reader.getTableData();
                     System.out.println(indexList.data.length);
                     DefaultTableModel model = new DefaultTableModel(indexList.data, indexList.columnNames);
                     indexList.table.setModel(model);
