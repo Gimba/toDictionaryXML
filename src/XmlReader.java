@@ -48,7 +48,7 @@ public class XmlReader {
         String[] lines = text.split(System.getProperty("line.separator"));
         String out = "";
         // i = 1 to remove first blank line
-        for (int i = 1; i < lines.length; i++){
+        for (int i = 0; i < lines.length; i++){
             out = out + lines[i].trim() + "\n";
         }
         return out;
@@ -116,7 +116,7 @@ public class XmlReader {
         for (int i = 0; i < eList.getLength(); i++){
             Element entry = (Element) eList.item(i);
             Element value = (Element) iList.item(i);
-            outList.add(new String[]{entry.getAttribute("id"), entry.getAttribute("d:title"), value.getAttribute("d:value"), XmlReader.innerXml(entry)});
+            outList.add(new String[]{entry.getAttribute("id"), entry.getAttribute("d:title"), value.getAttribute("d:value"), innerXml(entry)});
         }
         return outList;
     }

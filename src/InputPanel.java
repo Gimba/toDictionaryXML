@@ -37,8 +37,8 @@ public class InputPanel extends JPanel {
 
         // text field
         JPanel textPanel = new JPanel(new BorderLayout());
-        text = new JTextArea();
-        text.setLineWrap(true);
+        text = new JTextArea("uiae",10,3);
+        //text.setLineWrap(true);
         textPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         textPanel.setSize(200,200);
         textPanel.add(text);
