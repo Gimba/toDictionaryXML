@@ -32,6 +32,8 @@ public class MainDialog extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         inputPanel.setIndexList(indexList);
+
+        new DictBuilder();
     }
 
 }
